@@ -143,8 +143,9 @@ Use the removeFlavorByName function below to do the following:
   HINT: You can use .splice() for this
 */
 
-function removeFlavorByName(/*your code here*/){
-  /*your code here*/
+function removeFlavorByName(array, flavor){
+  array.splice(array.indexOf(flavor.toString()), 1);
+  return array;
 }
 
 
@@ -169,10 +170,17 @@ Use the filterByWord function below to do the following:
   DO NOT USE ADVANCED ARRAY METHODS (i.e. .filter) to solve this problem. 
 */
 
-function filterByWord(/*your code here*/){
-  /*your code here*/
+function filterByWord(array, keyword){
+  const filteredArray = [];
+  for(let i=0; i < array.length; i++){
+    if(array[i].includes(keyword.toString())){
+      filteredArray.push(array[array.indexOf(keyword.toString()), i]);
+    }
+  }
+  console.log(filteredArray);
+  return filteredArray;
 }
-
+filterByWord(originalFlavors, 'Chocolate');
 
 /* 💪💪💪💪💪🧁🍦🍨 STRETCH 🍨🍦🍫💪💪💪💪💪*/ 
 
@@ -186,10 +194,25 @@ Use the getAverageWordLength function below to do the following:
   For example: getAverageWordLength(originalFlavors) should return a number between 0 and 3.     
 */
 
-function getAverageWordLength(/*code here*/){
-  /*code here*/
+function getAverageWordLength(array){
+  function WordCount(str) {
+    let totalSoFar = 0;
+    for (let i = 0; i < str.length; i++)
+      if (str[i] === " ") { // if a space is found in str
+        totalSoFar = +1; // add 1 to total so far
+    }
+    totalSoFar += 1; // add 1 to totalsoFar to account for extra space since 1 space = 2 words
+    return totalSoFar;
+  }
+  let sum = 0;
+  for(let i=0; i < array.length; i++){
+    sum = sum + WordCount(array[i]);
+  }
+  let average = sum / array.length;
+  return average;
 }
 
+console.log('stretch', getAverageWordLength(originalFlavors));
 
 /* 💪💪💪💪💪💪💪💪💪💪 STRETCH 2: 💪💪💪💪💪💪💪💪💪
 Baskin Robins now offers new flavors, seasonal flavors, and even regional flavors. Write a function that will randomly select a total of 31 flavors 
